@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Nutrition Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ১. লগইন স্ক্রিন -->
+    <div id="login-card" class="card">
+        <h2 id="login-title">🚀 Sign In</h2>
+        <div class="form-group">
+            <label id="email-label" for="email">Enter your Gmail to start</label>
+            <input type="email" id="email" placeholder="example@gmail.com">
+            <small id="email-error" class="error-msg"></small>
+        </div>
+        <button id="login-btn" onclick="handleLogin()">Enter App</button>
+    </div>
+
+    <!-- ২. মেইন অ্যাপ স্ক্রিন -->
+    <div id="app-card" class="card hidden">
+        <!-- নেভিগেশন ও ভাষা পরিবর্তন -->
+        <div class="top-bar">
+            <span id="user-display"></span>
+            <div class="lang-box">
+                <select id="lang-select" onchange="changeLanguage()">
+                    <option value="English">English</option>
+                    <option value="বাংলা">বাংলা</option>
+                </select>
+            </div>
+        </div>
+
+        <h1 id="app-title">🥗 Health & Nutrition Assistant</h1>
+
+        <div class="app-container">
+            <!-- সাইডবার ইনপুট ফর্ম -->
+            <div class="sidebar">
+                <h3 id="info-header">Your Profile</h3>
+                
+                <div class="form-group">
+                    <label id="lbl-age">Age</label>
+                    <input type="number" id="age" value="25" min="1" max="100">
+                </div>
+
+                <div class="form-group">
+                    <label id="lbl-gender">Gender</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="male" checked> <span id="lbl-male">Male</span></label>
+                        <label><input type="radio" name="gender" value="female"> <span id="lbl-female">Female</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="lbl-weight">Weight (kg)</label>
+                    <input type="number" id="weight" value="70" min="10" max="200">
+                </div>
+
+                <div class="form-group">
+                    <label>Height</label>
+                    <div class="row">
+                        <div>
+                            <span id="lbl-height-ft" class="sub-label">Feet</span>
+                            <input type="number" id="height-ft" value="5" min="1" max="8">
+                        </div>
+                        <div>
+                            <span id="lbl-height-in" class="sub-label">Inches</span>
+                            <input type="number" id="height-in" value="7" min="0" max="11">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ক্যালকুলেট বাটন (আইডি যুক্ত করা হয়েছে) -->
+                <button class="calc-btn" onclick="calculateHealth()">
+                    <span id="calc-btn-text">Calculate</span>
+                </button>
+                <button class="logout-btn" id="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+
+            <!-- মূল ড্যাশবোর্ড ও রেজাল্ট -->
+            <div class="main-content">
+                <h3 id="status-header">📊 Health Status</h3>
+                
+                <div class="metrics">
+                    <div class="metric-card">
+                        <span id="lbl-bmi">BMI Score</span>
+                        <h2 id="bmi-val">--</h2>
+                    </div>
+                    <div class="metric-card">
+                        <span id="lbl-bmr">BMR (Basal Metabolic Rate)</span>
+                        <h2 id="bmr-val">-- kcal</h2>
+                    </div>
+                    <div class="metric-card">
+                        <span id="lbl-cal">Daily Calorie Needs</span>
+                        <h2 id="cal-val">-- kcal</h2>
+                    </div>
+                </div>
+
+                <div id="status-alert" class="alert hidden"></div>
+
+                <hr>
+
+                <!-- ডায়েট ও ফিটনেস দেখার বাটন -->
+                <div class="row" style="gap: 10px;">
+                    <button id="diet-btn" onclick="toggleDietChart()">Show Diet Chart</button>
+                    <button id="workout-btn" onclick="toggleWorkoutChart()" style="background-color: #28a745;">Show Fitness Routine</button>
+                </div>
+                
+                <div id="diet-chart" class="diet-box hidden"></div>
+                <div id="workout-chart" class="diet-box hidden"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
